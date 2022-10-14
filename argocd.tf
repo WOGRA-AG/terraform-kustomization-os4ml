@@ -1,5 +1,5 @@
 data "kustomization_build" "argocd" {
-  path = var.cluster_provisioner == "${path.module}/manifests/argocd/overlays/istio"
+  path = "${path.module}/manifests/argocd/overlays/istio"
 }
 
 resource "kustomization_resource" "argocd_p0" {
