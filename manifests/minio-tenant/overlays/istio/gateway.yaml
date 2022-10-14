@@ -1,0 +1,26 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: minio-gateway
+  namespace: minio-tenant
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        name: http
+        number: 80
+        protocol: HTTP
+      tls:
+        httpsRedirect: false
+      hosts:
+        - "minio.os4ml.wogra.com"
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      hosts:
+        - "minio.os4ml.wogra.com"
+      tls:
+        mode: SIMPLE
+        credentialName: minio-ingress-cert

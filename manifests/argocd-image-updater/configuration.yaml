@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-image-updater-config
+data:
+  registries.conf: |
+    registries:
+      - name: Wogra Gitlab
+        prefix: gitlab-registry.wogra.com
+        api_url: https://gitlab-registry.wogra.com
+        credentials: pullsecret:argocd/registry-credentials
+        default: true

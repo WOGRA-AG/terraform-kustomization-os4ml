@@ -1,0 +1,31 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: argocd
+resources:
+  - namespace.yaml
+  - regcred.yaml
+  - github.com/argoproj/argo-cd.git/manifests/cluster-install?ref=v2.4.12
+  - default-application.yaml
+images:
+  - name: quay.io/argoproj/argocd
+    newName: gitlab-registry.wogra.com/developer/images/argocd-ksops
+    newTag: argo2.4.12-sops3.0.2
+
+patchesStrategicMerge:
+  - argocd-secret.yaml
+  - argocd-cmd-params-cm.yaml
+patches:
+  - target:
+      kind: ServiceAccount
+    patch: |-
+      - op: add
+        path: /imagePullSecrets
+        value: [name: regcred]
+  - target:
+      kind: ConfigMap
+      name: argocd-cm
+    path: argocd-cm-patch.yaml
+  - target:
+      kind: ConfigMap
+      name: argocd-ssh-known-hosts-cm
+    path: argocd-ssh-known-hosts-cm.yaml

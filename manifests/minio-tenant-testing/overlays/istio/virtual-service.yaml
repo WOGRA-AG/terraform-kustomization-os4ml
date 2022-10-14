@@ -1,0 +1,17 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: minio-testing-route
+  namespace: minio-tenant-testing
+spec:
+  gateways:
+    - minio-testing-gateway
+  hosts:
+    - '*'
+  http:
+    - name: "minio-testing-route"
+      route:
+        - destination:
+            host: minio.minio-tenant-testing.svc.cluster.local
+            port:
+              number: 80
