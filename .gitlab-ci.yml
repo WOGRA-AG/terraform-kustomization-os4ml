@@ -1,0 +1,22 @@
+include:
+  local: .gitlab/Terraform-Module-Upload.gitlab-ci.yml
+
+stages:
+  - test
+  - upload
+
+validate:
+  stage: test
+  image: registry.gitlab.com/gitlab-org/terraform-images/releases/1.1
+  before_script:
+    - gitlab-terraform --version
+    - gitlab-terraform init -backend=false
+  script:
+    - gitlab-terraform fmt -check
+    - gitlab-terraform validate
+
+upload:
+  extends: .terraform_module_upload
+  stage: upload
+  rules:
+    - if: $CI_COMMIT_TAG

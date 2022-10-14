@@ -1,0 +1,35 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: oauth2-proxy-logout
+  namespace: auth
+spec:
+  gateways:
+  - kubeflow/kubeflow-gateway
+  - auth/auth-gateway
+  - os4ml/os4ml-gateway
+  - os4ml-dev/os4ml-gateway
+  - os4ml-prod/os4ml-gateway
+  - os4ml-feature/os4ml-gateway
+  - os4ml-release/os4ml-gateway
+  - os4ml-staging/os4ml-gateway
+  - os4ml-test/os4ml-gateway
+  - argocd/argocd-gateway
+  hosts:
+  - '*'
+  http:
+    - match:
+        - uri:
+            prefix: /logout
+      rewrite:
+        uri: "/oauth2/sign_out"
+      route:
+        - destination:
+            host: oauth2-proxy.auth.svc.cluster.local
+            port:
+              number: 4180
+      headers:
+        request:
+          set:
+            X-Auth-Request-Redirect: "http://keycloak.keycloak.svc.cluster.local:8080/realms/os4ml/protocol/openid-connect/logout?redirect_uri=https%%3A%%2F%%2Fos4ml.wogra.com"
+

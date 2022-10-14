@@ -1,0 +1,121 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: os4ml-common
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
+spec:
+  project: os4ml
+  source:
+    repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
+    path: manifests/common/base
+    targetRevision: main
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: os4ml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    retry:
+      limit: 2
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m0s
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: os4ml-objectstore
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  project: os4ml
+  source:
+    repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
+    path: manifests/apps/objectstore-manager/overlays/istio
+    targetRevision: main
+    kustomize:
+      images:
+        - 'gitlab-registry.wogra.com/developer/wogra/os4ml/objectstore-manager:dev'
+  destination:
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    retry:
+      limit: 2
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m0s
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: os4ml-frontend
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  project: os4ml
+  source:
+    repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
+    path: manifests/apps/frontend/overlays/istio
+    targetRevision: main
+    kustomize:
+      images:
+        - 'gitlab-registry.wogra.com/developer/wogra/os4ml/frontend:dev'
+  destination:
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    retry:
+      limit: 2
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m0s
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: os4ml-jobmanager
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+spec:
+  project: os4ml
+  source:
+    repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
+    path: manifests/apps/job-manager/overlays/istio
+    targetRevision: main
+    kustomize:
+      images:
+        - 'gitlab-registry.wogra.com/developer/wogra/os4ml/job-manager:dev'
+  destination:
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    retry:
+      limit: 2
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m0s

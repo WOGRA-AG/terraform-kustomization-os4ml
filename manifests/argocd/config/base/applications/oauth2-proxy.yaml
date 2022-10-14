@@ -1,0 +1,105 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: oidc-auth-base
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  project: istio
+  source:
+    repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
+    path: manifests/oidc-auth/base
+    targetRevision: main
+  destination:
+    server: 'https://kubernetes.default.svc'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: oauth2-proxy
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
+spec:
+  project: istio
+  source:
+    chart: oauth2-proxy
+    helm:
+      values: "extraArgs: {cookie-secure: 'false'}"
+      parameters:
+        - name: image.repository
+          value: bitnami/oauth2-proxy
+        - name: image.tag
+          value: 7.3.0
+        - name: configSecret.create
+          value: "false"
+        - name: config.existingSecret
+          value: oauth2-proxy
+        - name: service.portNumber
+          value: "4180"
+        - name: extraArgs.provider
+          value: keycloak-oidc
+        - name: extraArgs.cookie-samesite
+          value: lax
+        - name: extraArgs.cookie-refresh
+          value: 1h
+        - name: extraArgs.cookie-expire
+          value: 4h
+        - name: extraArgs.cookie-name
+          value: _oauth2_proxy
+        - name: extraArgs.email-domain
+          value: "*"
+        - name: extraArgs.upstream
+          value: "static://200"
+        - name: extraArgs.skip-provider-button
+          value: "true"
+        - name: extraArgs.cookie-domain
+          value: .svc.cluster.local
+        - name: extraArgs.whitelist-domain
+          value: .svc.cluster.local
+        - name: extraArgs.oidc-issuer-url
+          value: "http://keycloak:8080/realms/os4ml"
+        - name: extraArgs.redirect-url
+          value: "http://istio-ingressgateway.istio-system.svc.cluster.local"
+        - name: extraArgs.login-url
+          value: "http://keycloak:8080/realms/os4ml/protocol/openid-connect/auth"
+        - name: extraArgs.redeem-url
+          value: "http://keycloak:8080/realms/os4ml/protocol/openid-connect/token"
+        - name: extraArgs.profile-url
+          value: "http://keycloak:8080/realms/os4ml/protocol/openid-connect/userinfo"
+        - name: extraArgs.validate-url
+          value: "http://keycloak:8080/realms/os4ml/protocol/openid-connect/userinfo"
+        - name: extraArgs.scope
+          value: email profile openid
+        - name: extraArgs.skip-auth-route
+          value: /(realms)|(admin)|(js)|(resources)|(robots.txt)|(.well-known)|(shepard/api)
+        - name: extraArgs.oidc-extra-audience
+          value: account
+        - name: extraArgs.silence-ping-logging
+          value: "true"
+        - name: extraArgs.insecure-oidc-skip-issuer-verification
+          value: "true"
+        - name: extraArgs.code-challenge-method
+          value: "S256"
+        - name: extraArgs.set-xauthrequest
+          value: 'true'
+        - name: extraArgs.pass-access-token
+          value: 'true'
+    repoURL: https://oauth2-proxy.github.io/manifests
+    targetRevision: 6.2.7
+  destination:
+    namespace: auth
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
