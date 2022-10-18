@@ -42,7 +42,7 @@ spec:
     targetRevision: main
     kustomize:
       images:
-        - 'gitlab-registry.wogra.com/developer/wogra/os4ml/objectstore-manager:dev'
+        - 'gitlab-registry.wogra.com/developer/wogra/os4ml/objectstore-manager:main'
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
@@ -73,7 +73,7 @@ spec:
     targetRevision: main
     kustomize:
       images:
-        - 'gitlab-registry.wogra.com/developer/wogra/os4ml/frontend:dev'
+        - 'gitlab-registry.wogra.com/developer/wogra/os4ml/frontend:main'
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
@@ -104,7 +104,7 @@ spec:
     targetRevision: main
     kustomize:
       images:
-        - 'gitlab-registry.wogra.com/developer/wogra/os4ml/job-manager:dev'
+        - 'gitlab-registry.wogra.com/developer/wogra/os4ml/job-manager:main'
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
