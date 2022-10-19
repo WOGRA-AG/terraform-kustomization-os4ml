@@ -22,3 +22,12 @@ spec:
             host: keycloak.auth.svc.cluster.local
             port:
               number: 8080
+    - name: "keycloak-admin-route"
+      match:
+        - uri:
+            prefix: /admin/
+      route:
+        - destination:
+            host: keycloak.auth.svc.cluster.local
+            port:
+              number: 8080
