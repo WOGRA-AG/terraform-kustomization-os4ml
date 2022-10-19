@@ -9,7 +9,7 @@ spec:
   project: keycloak
   source:
     repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
-    path: manifests/keycloak/overlays/istio
+    path: manifests/keycloak/base
     targetRevision: main
   destination:
     server: 'https://kubernetes.default.svc'
