@@ -8,15 +8,6 @@ spec:
     matchLabels:
       istio: ingressgateway
   jwtRules:
-    - issuer: https://login.os4ml.wogra.com/realms/os4ml
-      jwksUri: https://login.os4ml.wogra.com/realms/os4ml/protocol/openid-connect/certs
-      forwardOriginalToken: true
-    - issuer: https://login.os4ml.wogra.com/realms/master
-      jwksUri: https://login.os4ml.wogra.com/realms/master/protocol/openid-connect/certs
-      forwardOriginalToken: true
-    - issuer: https://login.os4ml.wogra.com/realms/shepard
-      jwksUri: https://login.os4ml.wogra.com/realms/os4ml/protocol/openid-connect/certs
-      forwardOriginalToken: true
     - issuer: http://keycloak.auth.svc.cluster.local:8080/realms/os4ml
       jwksUri: http://keycloak.auth.svc.cluster.local:8080/realms/os4ml/protocol/openid-connect/certs
       forwardOriginalToken: true
@@ -44,4 +35,4 @@ spec:
   rules:
     - to:
         - operation:
-            notHosts: ["minio.os4ml.wogra.com"]
+            notHosts: []

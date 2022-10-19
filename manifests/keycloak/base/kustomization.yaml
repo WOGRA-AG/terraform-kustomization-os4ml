@@ -6,7 +6,7 @@ configMapGenerator:
   - name: keycloak-configmap
     behavior: create
     files:
-      - os4ml-realm.json
+      - os4ml-realm.json # TODO: Realm mit secrets austauschen
 
 resources:
   - namespace.yaml

@@ -40,9 +40,6 @@ spec:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
     path: manifests/apps/objectstore-manager/overlays/istio
     targetRevision: main
-    kustomize:
-      images:
-        - 'gitlab-registry.wogra.com/developer/wogra/os4ml/objectstore-manager:main'
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
@@ -71,9 +68,6 @@ spec:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
     path: manifests/apps/frontend/overlays/istio
     targetRevision: main
-    kustomize:
-      images:
-        - 'gitlab-registry.wogra.com/developer/wogra/os4ml/frontend:main'
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
@@ -102,9 +96,6 @@ spec:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
     path: manifests/apps/job-manager/overlays/istio
     targetRevision: main
-    kustomize:
-      images:
-        - 'gitlab-registry.wogra.com/developer/wogra/os4ml/job-manager:main'
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:

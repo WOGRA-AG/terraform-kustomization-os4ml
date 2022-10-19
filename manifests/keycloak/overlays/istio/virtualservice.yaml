@@ -7,11 +7,17 @@ metadata:
     app: auth
 spec:
   gateways:
-    - auth/auth-gateway
+    - auth-gateway
+    - kubeflow/kubeflow-gateway
   hosts:
     - '*'
   http:
     - name: "keycloak-route"
+      match:
+        - uri:
+            prefix: /keycloak/
+      rewrite:
+        uri: /
       route:
         - destination:
             host: keycloak.auth.svc.cluster.local

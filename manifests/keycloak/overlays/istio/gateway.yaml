@@ -8,20 +8,8 @@ spec:
     istio: ingressgateway
   servers:
     - hosts:
-        - login.os4ml.wogra.com
+        - "*"
       port:
         name: http
         number: 80
         protocol: HTTP
-      # Upgrade HTTP to HTTPS
-      tls:
-        httpsRedirect: false
-    - hosts:
-        - login.os4ml.wogra.com
-      port:
-        name: https
-        number: 443
-        protocol: HTTPS
-      tls:
-        mode: SIMPLE
-        credentialName: keycloak-ingress-cert

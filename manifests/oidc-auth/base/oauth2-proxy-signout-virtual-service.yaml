@@ -8,12 +8,6 @@ spec:
   - kubeflow/kubeflow-gateway
   - auth/auth-gateway
   - os4ml/os4ml-gateway
-  - os4ml-dev/os4ml-gateway
-  - os4ml-prod/os4ml-gateway
-  - os4ml-feature/os4ml-gateway
-  - os4ml-release/os4ml-gateway
-  - os4ml-staging/os4ml-gateway
-  - os4ml-test/os4ml-gateway
   - argocd/argocd-gateway
   hosts:
   - '*'
