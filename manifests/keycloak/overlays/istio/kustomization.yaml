@@ -3,5 +3,4 @@ kind: Kustomization
 namespace: auth
 resources:
   - ../../base
-  - gateway.yaml
   - virtualservice.yaml

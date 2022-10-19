@@ -4,4 +4,3 @@ namespace: argocd
 resources:
   - ../../base
   - virtualservice.yaml
-  - gateway.yaml

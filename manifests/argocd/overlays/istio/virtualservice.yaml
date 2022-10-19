@@ -6,6 +6,7 @@ metadata:
 spec:
   gateways:
     - argocd-gateway
+    - kubeflow/kubeflow-gateway
   hosts:
     - '*'
   http:
