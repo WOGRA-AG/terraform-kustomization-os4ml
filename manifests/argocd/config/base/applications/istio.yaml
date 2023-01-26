@@ -98,7 +98,7 @@ metadata:
   name: istio-ingressgateway
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "4"
 spec:
   project: istio
   source:
@@ -160,7 +160,7 @@ spec:
   source:
     repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
     targetRevision: main
-    path: manifests/argocd-istio-resources
+    path: manifests/argocd-istio-resources/base
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

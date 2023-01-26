@@ -4,7 +4,7 @@ metadata:
   name: os4ml-common
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "4"
 spec:
   project: os4ml
   source:
@@ -33,7 +33,7 @@ metadata:
   name: os4ml-objectstore
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   project: os4ml
   source:
@@ -64,7 +64,7 @@ metadata:
   name: os4ml-frontend
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   project: os4ml
   source:
@@ -95,7 +95,7 @@ metadata:
   name: os4ml-jobmanager
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   project: os4ml
   source:
@@ -126,7 +126,7 @@ metadata:
   name: os4ml-workflow-translator
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   project: os4ml
   source:
@@ -157,7 +157,7 @@ metadata:
   name: os4ml-model-manager
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   project: os4ml
   source:

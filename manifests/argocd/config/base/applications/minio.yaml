@@ -4,7 +4,7 @@ metadata:
   name: minio-operator
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: minio
   source:
@@ -37,7 +37,7 @@ metadata:
   name: minio-tenant
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "4"
 spec:
   project: minio
   source:

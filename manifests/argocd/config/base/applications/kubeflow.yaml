@@ -4,7 +4,7 @@ metadata:
   name: kubeflow-common
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "4"
 spec:
   project: kubeflow
   source:
@@ -32,7 +32,7 @@ metadata:
   name: kubeflow-pipelines
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "5"
 spec:
   project: kubeflow
   source:
