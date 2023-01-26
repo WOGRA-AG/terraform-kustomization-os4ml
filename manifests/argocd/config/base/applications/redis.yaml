@@ -1,15 +1,15 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: keycloak
+  name: redis
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
-  project: keycloak
+  project: redis
   source:
     repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
-    path: manifests/keycloak/base
+    path: manifests/redis
     targetRevision: main
   destination:
     server: 'https://kubernetes.default.svc'

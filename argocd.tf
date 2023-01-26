@@ -1,5 +1,5 @@
 data "kustomization_build" "argocd" {
-  path = "${path.module}/manifests/argocd/overlays/istio"
+  path = "${path.module}/manifests/argocd/base"
 }
 
 resource "kustomization_resource" "argocd_p0" {

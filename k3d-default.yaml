@@ -1,0 +1,21 @@
+---
+apiVersion: k3d.io/v1alpha4
+kind: Simple
+metadata:
+  name: os4ml-cluster
+servers: 1
+agents: 0
+image: docker.io/rancher/k3s:v1.25.6-k3s1
+options:
+  k3d:
+    disableLoadbalancer: true
+  k3s:
+    nodeLabels:
+      - label: cloud.google.com/gke-nodepool=highcpu-pool
+        nodeFilters:
+          - server:0
+  kubeconfig:
+    updateDefaultKubeconfig: true
+    switchCurrentContext: true
+  runtime:
+    gpuRequests: all

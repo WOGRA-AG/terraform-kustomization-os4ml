@@ -4,5 +4,4 @@ namespace: istio-system
 
 resources:
 - namespace.yaml
-- istio-spec.yaml
 - ingress.yaml

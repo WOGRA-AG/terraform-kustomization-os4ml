@@ -3,5 +3,4 @@ kind: Namespace
 metadata:
   name: istio-system
   labels:
-    istio-operator-managed: Reconcile
-    istio-injection: disabled
+    istio-injection: enabled
