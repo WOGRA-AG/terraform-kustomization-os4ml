@@ -41,9 +41,9 @@ metadata:
 spec:
   project: minio
   source:
-    repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
+    repoURL: 'https://gitlab.wogra.com/infrastructure/terraform/terraform-kustomization-os4ml.git'
     path: manifests/minio-tenant/base
-    targetRevision: main
+    targetRevision: fix-istio-issues
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: minio-tenant
