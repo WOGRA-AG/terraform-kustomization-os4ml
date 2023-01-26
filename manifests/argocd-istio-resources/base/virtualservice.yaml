@@ -4,6 +4,7 @@ metadata:
   name: argocd-server
 spec:
   gateways:
+    - os4ml/os4ml-gateway
     - kubeflow/kubeflow-gateway
   hosts:
     - '*'
