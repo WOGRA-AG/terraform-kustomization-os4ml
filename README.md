@@ -9,12 +9,12 @@ Install k3d, follow the instruction on the k3d site, and create a local
 cluster.
 
 ```bash
-$ k3d cluster create os4ml-cluster --k3s-node-label 'cloud.google.
-com/gke-nodepool=highcpu-pool@server:0'
+$ k3d cluster create --config ./k3d-default.yaml
 ```
 
 ## Step 2: Install Os4ML using Terraform
-Install [Terraform] and clone this repository. Got to the 
+Install [Terraform] and clone this repository.  
+Go to the 
 `examples/kubernetes` folder and execute
 
 ```bash
@@ -26,7 +26,7 @@ Now, relax and wait until the Os4ML namespace shows up and frontend service
 is running. In case there are problems, e.g. when argocd-server service is 
 said to be not created, try one more time the last command.
 
-The Argo CD server can be accessed at `localhost:8000/argocd` using this 
+The Argo CD server can be accessed at `localhost:8000/argocd/` using this 
 comand:
 
 ```bash
@@ -35,22 +35,33 @@ $ kubectl -n argocd port-forward svc/argocd-server 8000:80
 
 The username is `admin` and the password is given by
 ```bash
-$ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.
-data.password}" | base64 -d
+$ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
-Remind to cut off the percentage symbol at the end.
+Remember to cut off the percentage symbol at the end.
 
 ## Step 2: Connect to the Cluster
-When you want to access the frontend, install [Telepresence], connect to 
-the cluster
+There are multiple ways to connect to your app, once it runs in your cluster.  
+We use [Telepresence], so here is how you do it with this tool.  
 
+First follow the recommended steps on the [Telepresence] Website to install the tool.  
+Then run
+```bash
+$ telepresence helm install
+```
+After this, you are ready to connect to your cluster
 ```bash
 $ telepresence connect
 ```
 
-login at `http://istio-ingressgateway.istio-system.svc.cluster.local` with 
-user `user@example.com` and password `12341234` and access the frontend at 
-`http://istio-ingressgateway.istio-system.svc.cluster.local/os4ml`.
+Now you can access the application from your browser with the following urls:
+
+os4ml: `http://istio-ingressgateway.istio-system.svc.cluster.local/os4ml/`  
+argocd: `http://istio-ingressgateway.istio-system.svc.cluster.local/argocd/`  
+kubeflow-pipelines `http://istio-ingressgateway.istio-system.svc.cluster.local/`  
+
+if you are prompted to the login screen, use the following credentials  
+user: `user@example.com`  
+password: `12341234`
 
 
 [Os4ML]: https://github.com/WOGRA-AG/Os4ML
