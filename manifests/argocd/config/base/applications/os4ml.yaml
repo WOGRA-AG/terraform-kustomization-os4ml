@@ -38,7 +38,7 @@ spec:
   project: os4ml
   source:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
-    path: apps/objectstore-manager/overlays/istio
+    path: manifests/apps/objectstore-manager/overlays/istio
     targetRevision: main
     kustomize:
       images:
@@ -69,7 +69,7 @@ spec:
   project: os4ml
   source:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
-    path: apps/frontend/overlays/istio
+    path: manifests/apps/frontend/overlays/istio
     targetRevision: main
     kustomize:
       images:
@@ -100,7 +100,7 @@ spec:
   project: os4ml
   source:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
-    path: apps/job-manager/overlays/istio
+    path: manifests/apps/job-manager/overlays/istio
     targetRevision: main
     kustomize:
       images:
@@ -131,7 +131,7 @@ spec:
   project: os4ml
   source:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
-    path: apps/workflow-translator/base
+    path: manifests/apps/workflow-translator/base
     targetRevision: main
     kustomize:
       images:
@@ -162,7 +162,7 @@ spec:
   project: os4ml
   source:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
-    path: apps/model-manager/base
+    path: manifests/apps/model-manager/base
     targetRevision: main
     kustomize:
       images:
