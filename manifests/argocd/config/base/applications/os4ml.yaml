@@ -162,7 +162,7 @@ spec:
   project: os4ml
   source:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
-    path: manifests/apps/model-manager/base
+    path: manifests/apps/model-manager/overlays/istio
     targetRevision: main
     kustomize:
       images:
