@@ -9,7 +9,7 @@ spec:
   project: os4ml
   source:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
-    path: common/base
+    path: manifests/common/base
     targetRevision: main
   destination:
     server: 'https://kubernetes.default.svc'
