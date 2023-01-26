@@ -8,9 +8,9 @@ metadata:
 spec:
   project: istio
   source:
-    repoURL: 'https://gitlab.wogra.com/infrastructure/terraform/terraform-kustomization-os4ml.git'
+    repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
     path: manifests/oidc-auth/base
-    targetRevision: fix-istio-issues
+    targetRevision: main
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:

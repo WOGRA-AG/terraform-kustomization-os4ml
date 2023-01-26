@@ -12,8 +12,8 @@ spec:
     directory:
       recurse: true
       exclude: manifests/argocd/config/gcloud
-    repoURL: https://gitlab.wogra.com/infrastructure/terraform/terraform-kustomization-os4ml.git
-    targetRevision: fix-istio-issues
+    repoURL: https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git
+    targetRevision: main
   syncPolicy:
     automated:
       prune: false
