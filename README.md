@@ -6,10 +6,10 @@ This [Terraform] module installs Open Space for Machine Learning, or short
 ## Step 1: Create k3d cluster
 
 Install k3d, follow the instruction on the k3d site, and create a local 
-cluster.
+cluster using the provided configuration.
 
 ```bash
-$ k3d cluster create --config ./k3d-default.yaml
+k3d cluster create --config ./k3d-default.yaml
 ```
 
 ## Step 2: Install Os4ML using Terraform
@@ -18,8 +18,8 @@ Go to the
 `examples/kubernetes` folder and execute
 
 ```bash
-$ terraform init
-$ terraform apply --auto-approve
+terraform init
+terraform apply --auto-approve
 ```
 
 Now, relax and wait until the Os4ML namespace shows up and frontend service 
@@ -30,12 +30,12 @@ The Argo CD server can be accessed at `localhost:8000/argocd/` after you forward
 the correct port:
 
 ```bash
-$ kubectl port-forward -n argocd services/argocd-server 8000:443
+kubectl port-forward -n argocd services/argocd-server 8000:443
 ```
 
 The username is `admin` and the password is given by
 ```bash
-$ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
 ```
 Remember to cut off the percentage symbol at the end.
 
@@ -46,11 +46,11 @@ We use [Telepresence], so here is how you do it with this tool.
 First follow the recommended steps on the [Telepresence] Website to install the tool.  
 Then run
 ```bash
-$ telepresence helm install
+telepresence helm install
 ```
 After this, you are ready to connect to your cluster
 ```bash
-$ telepresence connect
+telepresence connect
 ```
 
 Now you can access the application from your browser with the following urls:
