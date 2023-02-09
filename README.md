@@ -39,7 +39,7 @@ $ kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.p
 ```
 Remember to cut off the percentage symbol at the end.
 
-## Step 2: Connect to the Cluster
+## Step 3: Connect to the Cluster
 There are multiple ways to connect to your app, once it runs in your cluster.  
 We use [Telepresence], so here is how you do it with this tool.  
 
