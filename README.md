@@ -26,11 +26,11 @@ Now, relax and wait until the Os4ML namespace shows up and frontend service
 is running. In case there are problems, e.g. when argocd-server service is 
 said to be not created, try one more time the last command.
 
-The Argo CD server can be accessed at `localhost:8000/argocd/` using this 
-comand:
+The Argo CD server can be accessed at `localhost:8000/argocd/` after you forward 
+the correct port:
 
 ```bash
-$ kubectl -n argocd port-forward svc/argocd-server 8000:80
+$ kubectl port-forward -n argocd services/argocd-server 8000:443
 ```
 
 The username is `admin` and the password is given by

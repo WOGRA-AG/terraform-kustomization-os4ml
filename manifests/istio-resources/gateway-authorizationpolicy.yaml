@@ -32,7 +32,4 @@ spec:
       app: istio-ingressgateway
   provider:
     name: "oauth2-proxy"
-  rules:
-    - to:
-        - operation:
-            notHosts: []
+  rules: []
