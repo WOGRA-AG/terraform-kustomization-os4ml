@@ -1,4 +1,4 @@
-apiVersion: security.istio.io/v1beta1
+apiVersion: security.istio.io/v1
 kind: RequestAuthentication
 metadata:
   name: istio-ingressgateway
@@ -19,7 +19,7 @@ spec:
       forwardOriginalToken: true
 ---
 # Allow all traffic to the istio-ingressgateway
-apiVersion: security.istio.io/v1beta1
+apiVersion: security.istio.io/v1
 kind: AuthorizationPolicy
 metadata:
   name: istio-ingressgateway

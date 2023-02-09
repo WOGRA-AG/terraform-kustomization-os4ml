@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: istio-system
 
 resources:
-- namespace.yaml
-- ingress.yaml
+  - namespace.yaml
+  - istio-spec.yaml
+  - ingress.yaml

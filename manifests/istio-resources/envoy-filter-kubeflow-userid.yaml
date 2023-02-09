@@ -4,6 +4,7 @@ metadata:
   name: kubeflow-userid
   namespace: istio-system
 spec:
+  priority: 1
   workloadSelector:
     labels:
       app: istio-ingressgateway
