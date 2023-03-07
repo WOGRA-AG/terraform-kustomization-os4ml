@@ -36,7 +36,7 @@ spec:
             - name: KEYCLOAK_ADMIN
               value: "admin"
             - name: KEYCLOAK_ADMIN_PASSWORD
-              value: "8c5082ea-8e3c-4ffa-a0dc-b324cee95857"
+              value: "b5JVMMrU-xwYj-y78d-ZyHX-4gdBYQhH7xuC"
             - name: KC_PROXY
               value: "edge"
             - name: KC_DB
