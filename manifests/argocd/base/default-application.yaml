@@ -11,7 +11,7 @@ spec:
     path: manifests/argocd/config/base
     directory:
       recurse: true
-      exclude: manifests/argocd/config/gcloud
+      exclude: applications/shepard.yaml
     repoURL: https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git
     targetRevision: main
   syncPolicy:

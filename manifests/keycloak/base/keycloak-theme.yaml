@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: keycloak-theme
-binaryData:
-  keycloak-themes.jar: $base64String
