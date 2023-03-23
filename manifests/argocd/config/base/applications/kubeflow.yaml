@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
     path: manifests/kubeflow/common/base
-    targetRevision: main
+    targetRevision: minimal-base-deployment
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
@@ -38,7 +38,7 @@ spec:
   source:
     repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
     path: manifests/kubeflow/components/pipelines-standalone/base
-    targetRevision: main
+    targetRevision: minimal-base-deployment
   destination:
     server: 'https://kubernetes.default.svc'
   ignoreDifferences:

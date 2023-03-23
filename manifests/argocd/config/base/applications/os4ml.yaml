@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
     path: manifests/common/base
-    targetRevision: main
+    targetRevision: minimal-base-deployment
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: os4ml
@@ -39,7 +39,7 @@ spec:
   source:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
     path: manifests/apps/objectstore-manager/base
-    targetRevision: main
+    targetRevision: minimal-base-deployment
     kustomize:
       images:
         - 'wogra/os4ml-objectstore-manager:dev'
@@ -70,7 +70,7 @@ spec:
   source:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
     path: manifests/apps/frontend/base
-    targetRevision: main
+    targetRevision: minimal-base-deployment
     kustomize:
       images:
         - 'wogra/os4ml-frontend:dev'
@@ -101,7 +101,7 @@ spec:
   source:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
     path: manifests/apps/job-manager/base
-    targetRevision: main
+    targetRevision: minimal-base-deployment
     kustomize:
       images:
         - 'wogra/os4ml-job-manager:dev'
@@ -132,7 +132,7 @@ spec:
   source:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
     path: manifests/apps/workflow-translator/base
-    targetRevision: main
+    targetRevision: minimal-base-deployment
     kustomize:
       images:
         - 'wogra/os4ml-workflow-translator:dev'
@@ -163,7 +163,7 @@ spec:
   source:
     repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
     path: manifests/apps/model-manager/base
-    targetRevision: main
+    targetRevision: minimal-base-deployment
     kustomize:
       images:
         - 'wogra/os4ml-model-manager:dev'

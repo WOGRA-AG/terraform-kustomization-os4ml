@@ -10,7 +10,7 @@ spec:
   source:
     repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
     path: manifests/redis
-    targetRevision: main
+    targetRevision: minimal-base-deployment
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
