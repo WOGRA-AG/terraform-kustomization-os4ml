@@ -5,4 +5,3 @@ namespace: kubeflow
 resources:
   - github.com/kubeflow/manifests.git/apps/pipeline/upstream/cluster-scoped-resources?ref=v1.6.0
   - registry-credentials.yml
-  - gateway.yaml

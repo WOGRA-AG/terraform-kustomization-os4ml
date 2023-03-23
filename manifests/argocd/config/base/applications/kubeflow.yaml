@@ -4,7 +4,7 @@ metadata:
   name: kubeflow-common
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "4"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: kubeflow
   source:
@@ -32,12 +32,12 @@ metadata:
   name: kubeflow-pipelines
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "5"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   project: kubeflow
   source:
     repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
-    path: manifests/kubeflow/components/pipelines-standalone
+    path: manifests/kubeflow/components/pipelines-standalone/base
     targetRevision: main
   destination:
     server: 'https://kubernetes.default.svc'

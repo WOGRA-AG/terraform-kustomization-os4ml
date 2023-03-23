@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: shepard
+  namespace: shepard
+data:
+  catalinaOpts: "-Xms2048m -Xmx2048m"
+  oidcPublic: ""
+  oidcAuthority: ""
+  influxHost: "influxdb:8086"
+  influxUsername: "admin"
+  influxPassword: "influx1234"
+  neo4jHost: "neo4j:7687"
+  neo4jUsername: "neo4j"
+  neo4jPassword: "Neo4j1234"
+  mongoHost: "mongodb:27017"
+  mongoUsername: "root"
+  mongoPassword: "admin1234"
+  vueAppBackend: "http://shepard.shepard.svc:8080/shepard/api"
+  vueAppOidcAuth: ""
+  vueAppClientId: "shepard"

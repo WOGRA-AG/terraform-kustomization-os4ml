@@ -1,0 +1,20 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: shepard-frontend
+  namespace: shepard
+spec:
+  gateways:
+    - shepard/shepard-gateway
+  hosts:
+    - '*'
+  http:
+    - name: "shepard-frontend-route"
+      match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: frontend.shepard.svc.cluster.local
+            port:
+              number: 80

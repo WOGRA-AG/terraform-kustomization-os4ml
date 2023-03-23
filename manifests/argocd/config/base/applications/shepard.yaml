@@ -1,19 +1,29 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: os4ml-common
+  name: mongodb
   namespace: argocd
   annotations:
     argocd.argoproj.io/sync-wave: "1"
 spec:
-  project: os4ml
+  project: shepard
   source:
-    repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
-    path: manifests/common/base
-    targetRevision: main
+    repoURL: 'https://charts.bitnami.com/bitnami'
+    targetRevision: 13.1.5
+    helm:
+      parameters:
+        - name: auth.password
+          value: shepard1234
+        - name: auth.username
+          value: mongodb-shepard
+        - name: auth.rootPassword
+          value: admin1234
+        - name: auth.database
+          value: admin
+    chart: mongodb
   destination:
     server: 'https://kubernetes.default.svc'
-    namespace: os4ml
+    namespace: shepard
   syncPolicy:
     automated:
       prune: true
@@ -21,7 +31,7 @@ spec:
     syncOptions:
       - CreateNamespace=true
     retry:
-      limit: 2
+      limit: 5
       backoff:
         duration: 5s
         factor: 2
@@ -30,21 +40,42 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: os4ml-objectstore
+  name: neo4j
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
-  project: os4ml
+  project: shepard
   source:
-    repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
-    path: manifests/apps/objectstore-manager/base
-    targetRevision: main
-    kustomize:
-      images:
-        - 'wogra/os4ml-objectstore-manager:dev'
+    repoURL: 'https://helm.neo4j.com/neo4j'
+    targetRevision: 4.4.11
+    helm:
+      values: |-
+        neo4j:
+          password: "Neo4j1234"
+          edition: "community"
+          acceptLicenseAgreement: "yes"
+          resources:
+            cpu: "500m"
+            memory: "2Gi"
+
+        volumes:
+          data:
+            mode: "defaultStorageClass"
+
+        config:
+          dbms.default_database: "neo4j"
+          dbms.config.strict_validation: "true"
+
+        services:
+          neo4j:
+            enabled: false
+            spec:
+              type: ClusterIP
+    chart: neo4j-standalone
   destination:
     server: 'https://kubernetes.default.svc'
+    namespace: shepard
   syncPolicy:
     automated:
       prune: true
@@ -52,7 +83,7 @@ spec:
     syncOptions:
       - CreateNamespace=true
     retry:
-      limit: 2
+      limit: 3
       backoff:
         duration: 5s
         factor: 2
@@ -61,21 +92,29 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: os4ml-frontend
+  name: influxdb
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
-  project: os4ml
+  project: shepard
   source:
-    repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
-    path: manifests/apps/frontend/base
-    targetRevision: main
-    kustomize:
-      images:
-        - 'wogra/os4ml-frontend:dev'
+    repoURL: 'https://helm.influxdata.com'
+    targetRevision: 4.12.0
+    helm:
+      parameters:
+        - name: setDefaultUser.user.username
+          value: admin
+      values: |-
+        setDefaultUser:
+          enabled: true
+          user:
+            username: "admin"
+            password: "influx1234"
+    chart: influxdb
   destination:
     server: 'https://kubernetes.default.svc'
+    namespace: shepard
   syncPolicy:
     automated:
       prune: true
@@ -83,7 +122,7 @@ spec:
     syncOptions:
       - CreateNamespace=true
     retry:
-      limit: 2
+      limit: 5
       backoff:
         duration: 5s
         factor: 2
@@ -92,19 +131,16 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: os4ml-jobmanager
+  name: shepard-common
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "1"
 spec:
-  project: os4ml
+  project: shepard
   source:
-    repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
-    path: manifests/apps/job-manager/base
+    repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
+    path: manifests/shepard/common/base
     targetRevision: main
-    kustomize:
-      images:
-        - 'wogra/os4ml-job-manager:dev'
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
@@ -114,7 +150,7 @@ spec:
     syncOptions:
       - CreateNamespace=true
     retry:
-      limit: 2
+      limit: 5
       backoff:
         duration: 5s
         factor: 2
@@ -123,19 +159,16 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: os4ml-workflow-translator
+  name: shepard-backend
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
-  project: os4ml
+  project: shepard
   source:
-    repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
-    path: manifests/apps/workflow-translator/base
+    repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
+    path: manifests/shepard/backend/base
     targetRevision: main
-    kustomize:
-      images:
-        - 'wogra/os4ml-workflow-translator:dev'
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
@@ -145,7 +178,7 @@ spec:
     syncOptions:
       - CreateNamespace=true
     retry:
-      limit: 2
+      limit: 5
       backoff:
         duration: 5s
         factor: 2
@@ -154,19 +187,16 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: os4ml-model-manager
+  name: shepard-frontend
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "2"
 spec:
-  project: os4ml
+  project: shepard
   source:
-    repoURL: 'https://github.com/WOGRA-AG/Os4ML.git'
-    path: manifests/apps/model-manager/base
+    repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
+    path: manifests/shepard/frontend/base
     targetRevision: main
-    kustomize:
-      images:
-        - 'wogra/os4ml-model-manager:dev'
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
@@ -176,7 +206,7 @@ spec:
     syncOptions:
       - CreateNamespace=true
     retry:
-      limit: 2
+      limit: 5
       backoff:
         duration: 5s
         factor: 2

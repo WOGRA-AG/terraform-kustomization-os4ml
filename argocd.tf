@@ -1,5 +1,5 @@
 data "kustomization_build" "argocd" {
-  path = "${path.module}/manifests/argocd/base"
+  path = var.deploy_shepard ? "${path.module}/manifests/argocd/overlays/shepard" : "${path.module}/manifests/argocd/base"
 }
 
 resource "kustomization_resource" "argocd_p0" {

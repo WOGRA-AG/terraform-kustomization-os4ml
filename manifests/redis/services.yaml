@@ -5,8 +5,8 @@ metadata:
   namespace: redis
 spec:
   selector:
-    app: redis
-    name: redis-master
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/component: redis-master
   clusterIP: None
   ports:
     - port: 6379
@@ -21,8 +21,8 @@ metadata:
   namespace: redis
 spec:
   selector:
-    app: redis
-    name: redis-replica
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/component: redis-replica
   clusterIP: None
   ports:
     - port: 6379
