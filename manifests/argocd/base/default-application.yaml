@@ -13,7 +13,7 @@ spec:
       recurse: true
       exclude: applications/shepard.yaml
     repoURL: https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git
-    targetRevision: minimal-base-deployment
+    targetRevision: main
   syncPolicy:
     automated:
       prune: false

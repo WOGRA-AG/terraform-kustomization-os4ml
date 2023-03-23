@@ -4,14 +4,12 @@ metadata:
   name: backend
   namespace: shepard
   labels:
-    app: shepard
-    name: shepard-service
-    tier: backend
+    app.kubernetes.io/name: shepard
+    app.kubernetes.io/component: backend
 spec:
   selector:
-    app: shepard
-    name: shepard-backend
-    tier: backend
+    app.kubernetes.io/name: shepard
+    app.kubernetes.io/component: backend
   ports:
     - name: http
       port: 8080

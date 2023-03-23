@@ -140,7 +140,7 @@ spec:
   source:
     repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
     path: manifests/shepard/common/base
-    targetRevision: minimal-base-deployment
+    targetRevision: main
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
@@ -168,7 +168,7 @@ spec:
   source:
     repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
     path: manifests/shepard/backend/base
-    targetRevision: minimal-base-deployment
+    targetRevision: main
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:
@@ -196,7 +196,7 @@ spec:
   source:
     repoURL: 'https://github.com/WOGRA-AG/terraform-kustomization-os4ml.git'
     path: manifests/shepard/frontend/base
-    targetRevision: minimal-base-deployment
+    targetRevision: main
   destination:
     server: 'https://kubernetes.default.svc'
   syncPolicy:

@@ -13,13 +13,4 @@ spec:
       tls:
         httpsRedirect: false
       hosts:
-        - "shepard.os4ml.wogra.com"
-    - port:
-        number: 443
-        name: https
-        protocol: HTTPS
-      tls:
-        mode: SIMPLE
-        credentialName: shepard-ingress-cert
-      hosts:
-        - "shepard.os4ml.wogra.com"
+        - "*"

@@ -4,21 +4,19 @@ metadata:
   name: frontend
   namespace: shepard
   labels:
-    app: shepard
-    tier: frontend
+    app.kubernetes.io/name: shepard
+    app.kubernetes.io/component: frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: shepard
-      tier: frontend
-      name: shepard-frontend
+      app.kubernetes.io/name: shepard
+      app.kubernetes.io/component: frontend
   template:
     metadata:
       labels:
-        app: shepard
-        tier: frontend
-        name: shepard-frontend
+        app.kubernetes.io/name: shepard
+        app.kubernetes.io/component: frontend
     spec:
       containers:
         - name: backend

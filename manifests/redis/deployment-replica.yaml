@@ -4,19 +4,19 @@ metadata:
   name: replica
   namespace: redis
   labels:
-    app: redis
-    name: redis-replica
+    app.kubernetes.io/name: redis
+    app.kubernetes.io/component: redis-replica
 spec:
   replicas: 2 
   selector:
     matchLabels:
-      app: redis
-      name: redis-replica
+      app.kubernetes.io/name: redis
+      app.kubernetes.io/component: redis-replica
   template:
     metadata:
       labels:
-        app: redis
-        name: redis-replica
+        app.kubernetes.io/name: redis
+        app.kubernetes.io/component: redis-replica
     spec:
       containers:
       - name: redis
