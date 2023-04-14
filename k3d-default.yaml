@@ -14,10 +14,6 @@ options:
       - arg: --disable=traefik
         nodeFilters:
           - server:0
-    nodeLabels:
-      - label: cloud.google.com/gke-nodepool=highcpu-pool
-        nodeFilters:
-          - server:0
   kubeconfig:
     updateDefaultKubeconfig: true
     switchCurrentContext: true
