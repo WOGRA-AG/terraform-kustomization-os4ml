@@ -26,18 +26,14 @@ Now, relax and wait until the Os4ML namespace shows up and frontend service
 is running. In case there are problems, e.g. when argocd-server service is 
 said to be not created, try one more time the last command.
 
-The Argo CD server can be accessed at `localhost:8000/argocd/` after you forward 
+The Argo CD server can be accessed at `localhost:8000` after you forward 
 the correct port:
 
 ```bash
 kubectl port-forward -n argocd services/argocd-server 8000:443
 ```
 
-The username is `admin` and the password is given by
-```bash
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
-```
-Remember to cut off the percentage symbol at the end.
+The username and password is `admin`, as specified in `/manifests/argocd/base/argocd-secret.yaml`
 
 ## Step 3: Connect to the Cluster
 There are multiple ways to connect to your app, once it runs in your cluster.  
@@ -55,13 +51,11 @@ telepresence connect
 
 Now you can access the application from your browser with the following urls:
 
-os4ml: `http://istio-ingressgateway.istio-system.svc.cluster.local/os4ml/`  
-argocd: `http://istio-ingressgateway.istio-system.svc.cluster.local/argocd/`  
-kubeflow-pipelines `http://istio-ingressgateway.istio-system.svc.cluster.local/`  
+os4ml: `http://frontend.os4ml.svc.cluster.local`  
+argocd: `http://argocd-server.argocd.svc.cluster.local`  
+kubeflow-pipelines `http://ml-pipeline-ui.kubeflow.svc.cluster.local`  
 
-if you are prompted to the login screen, use the following credentials  
-user: `user@example.com`  
-password: `12341234`
+Alternatively, you could just forward the respective ports and access the services directly.
 
 
 [Os4ML]: https://github.com/WOGRA-AG/Os4ML
