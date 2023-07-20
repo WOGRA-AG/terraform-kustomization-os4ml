@@ -30,7 +30,7 @@ The Argo CD server can be accessed at `localhost:8000` after you forward
 the correct port:
 
 ```bash
-kubectl port-forward -n argocd services/argocd-server 8000:443
+kubectl port-forward -n argocd services/argocd-server 8000:80
 ```
 
 The username and password is `admin`, as specified in `/manifests/argocd/base/argocd-secret.yaml`
