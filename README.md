@@ -10,7 +10,7 @@ Install k3d by following the instructions on the k3d website, and create a local
 k3d cluster create --config ./k3d-default.yaml
 ```
 
-## Step 2: Install Os4ML using Terraform
+## Step 2: Install Argo CD using Terraform
 
 Install [Terraform] and clone this repository.  
 Go to the `examples/kubernetes` folder and execute the following commands:
@@ -19,8 +19,8 @@ Go to the `examples/kubernetes` folder and execute the following commands:
 terraform init
 terraform apply --auto-approve
 ```
-
-Now, relax and wait until the Os4ML namespace shows up, and the frontend service is running. If there are any issues, such as the argocd-server service not being created, try running the last command one more time.
+Argo CD will now begin installing Os4ML.
+Relax and wait until the Os4ML namespace shows up, and the frontend service is running. If there are any issues, such as the argocd-server service not being created, try running the last command one more time.
 
 ## Step 3: Connect to the Cluster
 
