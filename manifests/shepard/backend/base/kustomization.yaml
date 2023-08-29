@@ -4,7 +4,3 @@ namespace: shepard
 resources:
   - deployment.yaml
   - service.yaml
-images:
-  - name: registry.gitlab.com/dlr-shepard/backend
-    newName: gitlab-registry.wogra.com/dlr/shepard/backend
-    newTag: dev
