@@ -31,62 +31,59 @@ spec:
                 configMapKeyRef:
                   name: shepard
                   key: catalinaOpts
-            - name: oidc.public
+            - name: OIDC_PUBLIC
               valueFrom:
                 configMapKeyRef:
                   name: shepard
                   key: oidcPublic
-            - name: oidc.authority
+            - name: OIDC_AUTHORITY
               valueFrom:
                 configMapKeyRef:
                   name: shepard
                   key: oidcAuthority
-            - name: influx.host
+            - name: INFLUX_HOST
               valueFrom:
                 configMapKeyRef:
                   name: shepard
                   key: influxHost
-            - name: influx.username
+            - name: INFLUX_USERNAME
               valueFrom:
                 configMapKeyRef:
                   name: shepard
                   key: influxUsername
-            - name: influx.password
+            - name: INFLUX_PASSWORD
               valueFrom:
                 configMapKeyRef:
                   name: shepard
                   key: influxPassword
-            - name: neo4j.host
+            - name: NEO4J_HOST
               valueFrom:
                 configMapKeyRef:
                   name: shepard
                   key: neo4jHost
-            - name: neo4j.username
+            - name: NEO4J_USERNAME
               valueFrom:
                 configMapKeyRef:
                   name: shepard
                   key: neo4jUsername
-            - name: neo4j.password
+            - name: NEO4J_PASSWORD
               valueFrom:
                 configMapKeyRef:
                   name: shepard
                   key: neo4jPassword
-            - name: mongo.host
+            - name: MONGO_HOST
               valueFrom:
                 configMapKeyRef:
                   name: shepard
                   key: mongoHost
-            - name: mongo.username
+            - name: MONGO_USERNAME
               valueFrom:
                 configMapKeyRef:
                   name: shepard
                   key: mongoUsername
-            - name: mongo.password
+            - name: MONGO_PASSWORD
               valueFrom:
                 configMapKeyRef:
                   name: shepard
                   key: mongoPassword
-      imagePullSecrets:
-        - name: registry-credentials
-
       serviceAccountName: default-shepard
