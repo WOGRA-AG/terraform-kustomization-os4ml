@@ -4,12 +4,8 @@ namespace: argocd
 resources:
   - namespace.yaml
   - regcred.yaml
-  - github.com/argoproj/argo-cd.git/manifests/cluster-install?ref=v2.10.6
+  - github.com/argoproj/argo-cd.git/manifests/cluster-install?ref=v2.12.0
   - default-application.yaml
-images:
-  - name: quay.io/argoproj/argocd
-    newName: gitlab-registry.wogra.com/developer/images/argocd-ksops
-    newTag: argo2.10.6-sops3.0.2
 
 patchesStrategicMerge:
   - argocd-secret.yaml
